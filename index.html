@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            #error {
+                color: red;
+            }
+        </style>
+        
+        <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+        
+        <script type="text/javascript">
+            var currentMode = "mysql";
+            
+            function changeMode(mode) {
+                currentMode = mode;
+                
+                console.log("Selected mode is " + currentMode);
+            }
+        </script>
+        
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("input[type=radio][name=database-mode]").on("change", function() {
+                    if(this.value == "mysql") {
+                        changeMode("mysql");
+                    } else {
+                        changeMode("azure");
+                    }
+                });
+            });
+        </script>
+    </head>
+    
+    <body>
+        <!-- Mode Selector -->
+        <div id="mode-select">
+            Mode:
+            <input type="radio" name="database-mode" value="mysql" checked> MySQL
+            <input type="radio" name="database-mode" value="azure"> Azure
+        </div>
+        
+        <div id="operation-select">
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
+        </div>
+    </body>
+</html>
