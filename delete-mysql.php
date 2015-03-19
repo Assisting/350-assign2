@@ -4,7 +4,7 @@
     $insertStatement = $db->prepare("DELETE FROM AddressBook WHERE id=?");
     $insertStatement->bindParam(1, $idToRemove);
 
-    $idToRemove = $_POST["id"]);
+    $idToRemove = intval($_POST["id"]);
     
     $insertStatement->execute();
 ?>
