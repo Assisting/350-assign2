@@ -1,0 +1,32 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
+
+body {
+    font-family: Source Sans Pro;
+}
+
+#error {
+    color: red;
+}
+
+table {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table, th, td {
+    border: 1px, solid white;
+}
+
+th {
+    text-align: center;
+    background: #1E90FF;
+}
+
+tr.odd {
+    background: white;
+}
+
+tr.even {
+    background: #B0E0E6;
+}
