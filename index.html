@@ -96,15 +96,22 @@
             });
             
             function addEntry() {
-                var firstName = $("#fName").val();
-                var lastName = $("#lName").val();
-                var email = $("#email").val();
-                var phone = $("#phone").val();
-                var github = $("#github").val();
-                var city = $("#city").val();
-                var region = $("#region").val();
-                var country = $("#country").val();
-                var occupation = $("#occupation").val();
+                var $inputs = $("#fName, #lName, #email, #phone, #github, #city, #region, #country, #occupation");
+                var dataString = {};
+                
+                $inputs.each(function() {
+                    dataString[this.id] = $(this).val()
+                })
+                
+                /*$("#fName").val();
+                $("#lName").val();
+                $("#email").val();
+                $("#phone").val();
+                $("#github").val();
+                $("#city").val();
+                $("#region").val();
+                $("#country").val();
+                $("#occupation").val();*/
                 
                 var dbCreateScript;
                 if (currentMode == "azure") {
@@ -117,15 +124,7 @@
                     $.ajax({
                         type: 'POST',
                         url: dbCreateScript,
-                        data: {firstName: $("#fName").val(),
-                               lastName: $("#lName").val(),
-                               email: $("#email").val(),
-                               phone: $("#phone").val(),
-                               github: $("#github").val(),
-                               city: $("#city").val(),
-                               region: $("#region").val(),
-                               country: $("#country").val(),
-                               occupation: $("#occupation").val()},
+                        data: dataString,
                         dataType: "json",
                         success: updateBook,
                         error: function() {
