@@ -96,15 +96,15 @@
             });
             
             function addEntry() {
-                var $inputs = $("#fName, #lName, #email, #phone, #github, #city, #region, #country, #occupation");
+                var $inputs = $("#firstName, #lastName, #email, #phone, #github, #city, #region, #country, #occupation");
                 var data = {};
                 
                 $inputs.each(function() {
                     data[this.id] = $(this).val()
                 })
                 
-                /*$("#fName").val();
-                $("#lName").val();
+                /*$("#firstName").val();
+                $("#lastName").val();
                 $("#email").val();
                 $("#phone").val();
                 $("#github").val();
@@ -149,8 +149,8 @@
         <br />
         <table>
             <tr>
-                <td><input class="createForm" type="text" id="fName" placeholder="First Name"></td>
-                <td><input class="createForm" type="text" id="lName" placeholder="Last Name"></td>
+                <td><input class="createForm" type="text" id="firstName" placeholder="First Name"></td>
+                <td><input class="createForm" type="text" id="lastName" placeholder="Last Name"></td>
                 <td><input class="createForm" type="email" id="email" placeholder="Email"></td>
                 <td><input class="createForm" type="tel" id="phone" placeholder="Telephone Number"></td>
                 <td><input class="createForm" type="text" id="github" placeholder="GitHub Username"></td>
