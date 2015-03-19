@@ -9,8 +9,6 @@
         $data = stripcslashes($data);
         $data = htmlspecialchars($data);
         return $data;
-        
-        print $data;
     }
 
     $insertStatement = $db->prepare("INSERT INTO AddressBook (FirstName, LastName, Email, Phone, GitHub, City, Region, Country, Occupation)
@@ -25,15 +23,15 @@
     $insertStatement->bindParam(8, $country);
     $insertStatement->bindParam(9, $occupation);
 
-    $firstName = clean($_POST["firstName"]);
-    $lastName = clean($_POST["lastName"]);
-    $email = clean($_POST["email"]);
-    $phone = clean($_POST["phone"]);
-    $github = clean($_POST["github"]);
-    $city = clean($_POST["city"]);
-    $region = clean($_POST["region"]);
-    $country = clean($_POST["country"]);
-    $occupation = clean($_POST["occupation"]);
+    $firstName = clean($_GET["firstName"]);
+    $lastName = clean($_GET["lastName"]);
+    $email = clean($_GET["email"]);
+    $phone = clean($_GET["phone"]);
+    $github = clean($_GET["github"]);
+    $city = clean($_GET["city"]);
+    $region = clean($_GET["region"]);
+    $country = clean($_GET["country"]);
+    $occupation = clean($_GET["occupation"]);
     
     $insertStatement->execute();
 ?>

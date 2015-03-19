@@ -124,15 +124,7 @@
                 
                 alert(dataString);
                 
-                $.ajax({
-                    type: 'POST',
-                    url: dbCreateScript,
-                    data: dataString,
-                    success: updateBook,
-                    error: function() {
-                        alert("Error creating entry!");
-                    }
-                });
+                $.post(dbCreateScript, dataString);
             }
         </script>
     </head>
