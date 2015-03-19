@@ -176,11 +176,11 @@
             }
             
             function updateEntry(id) {
-                var dbDeleteScript;
+                var dbUpdateScript;
                 if (currentMode == "azure") {
-                    dbDeleteScript = "delete-azure.php";
+                    dbUpdateScript = "delete-azure.php";
                 } else {
-                    dbDeleteScript = "delete-mysql.php";
+                    dbUpdateScript = "delete-mysql.php";
                 }
                 
                 var dataString = 'id=' + id;
@@ -190,7 +190,7 @@
                 
                 $.ajax({
                     type: 'POST',
-                    url: dbDeleteScript,
+                    url: dbUpdateScript,
                     data: dataString,
                     success: addEntry,
                     error: function() {
