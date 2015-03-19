@@ -70,7 +70,7 @@
                        "<td>" + this.region + "</td>" +
                        "<td>" + this.country + "</td>" +
                        "<td>" + this.occupation + "</td>" +
-                       "<td> </td>" +
+                       "<td><a onclick=\"deleteEntry(" + this.id + ")\">Delete</a></td>" +
                        "</tr>";
                    
                    if(rowCount == "odd") {
@@ -123,8 +123,6 @@
                     '&country=' + country +
                     '&occupation=' + occupation;
                 
-                alert(dataString);
-                
                 $.ajax({
                     type: 'POST',
                     url: dbCreateScript,
@@ -132,6 +130,27 @@
                     success: updateBook,
                     error: function() {
                         alert("Error creating entry!");
+                    }
+                });
+            }
+            
+            function deleteEntry(id) {
+                var dbDeleteScript;
+                if (currentMode == "azure") {
+                    dbDeleteScript = "delete-azure.php";
+                } else {
+                    dbDeleteScript = "delete-mysql.php";
+                }
+                
+                var dataString = 'id=' + id;
+                
+                $.ajax({
+                    type: 'POST',
+                    url: dbDeleteScript,
+                    data: dataString,
+                    success: updateBook,
+                    error: function() {
+                        alert("Error deleting entry!");
                     }
                 });
             }
