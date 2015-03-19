@@ -18,17 +18,26 @@
     $country = clean($_POST["country"]);
     $occupation = clean($_POST["occupation"]);
 
-    $insertStatement = $db->prepare("INSERT INTO AddressBook (FirstName, LastName, Email, Phone, GitHub, City, Region, Country, Occupation)
-                                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $insertStatement->bindParam(1, $firstName);
-    $insertStatement->bindParam(2, $lastName);
-    $insertStatement->bindParam(3, $email);
-    $insertStatement->bindParam(4, $phone);
-    $insertStatement->bindParam(5, $github);
-    $insertStatement->bindParam(6, $city);
-    $insertStatement->bindParam(7, $region);
-    $insertStatement->bindParam(8, $country);
-    $insertStatement->bindParam(9, $occupation);
-
-    $insertStatement->execute();
+    $insertStatement = "INSERT INTO AddressBook (FirstName, LastName, Email, Phone, GitHub, City, Region, Country, Occupation)
+                                    VALUES (";
+    $insertStatement .= $firstName;
+    $insertStatement .= ", ";
+    $insertStatement .= $lastName;
+    $insertStatement .= ", ";
+    $insertStatement .= $email;
+    $insertStatement .= ", ";
+    $insertStatement .= $phone;
+    $insertStatement .= ", ";
+    $insertStatement .= $github;
+    $insertStatement .= ", ";
+    $insertStatement .= $city;
+    $insertStatement .= ", ";
+    $insertStatement .= $region;
+    $insertStatement .= ", ";
+    $insertStatement .= $country;
+    $insertStatement .= ", ";
+    $insertStatement .= $occupation;
+    $insertStatement .= ")";
+    
+    $db->query($insertStatement);
 ?>
