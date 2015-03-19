@@ -9,6 +9,8 @@
         $data = stripcslashes($data);
         $data = htmlspecialchars($data);
         return $data;
+        
+        print $data;
     }
 
     $insertStatement = $db->prepare("INSERT INTO AddressBook (FirstName, LastName, Email, Phone, GitHub, City, Region, Country, Occupation)
