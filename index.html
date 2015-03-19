@@ -124,16 +124,15 @@
                 
                 alert(dataString);
                 
-                $("#addressBook").html("");
-                    $.ajax({
-                        type: 'POST',
-                        url: dbCreateScript,
-                        data: dataString,
-                        success: updateBook,
-                        error: function() {
-                            alert("Error creating entry!");
-                        }
-                    });
+                $.ajax({
+                    type: 'POST',
+                    url: dbCreateScript,
+                    data: dataString,
+                    success: updateBook,
+                    error: function() {
+                        alert("Error creating entry!");
+                    }
+                });
             }
         </script>
     </head>
