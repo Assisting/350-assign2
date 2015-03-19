@@ -12,6 +12,7 @@
                 currentMode = mode;
                 
                 console.log("Selected mode is " + currentMode);
+                updateBook();
             }
         </script>
         
@@ -35,6 +36,11 @@
                     });
             }
             
+            function updateBook() {
+                $("#addressBook").html("");
+                readBook();
+            }
+            
             function makeTable(dataIn) {
                 alert(dataIn);
                 var rowCount = "odd";
@@ -51,8 +57,8 @@
                     "<th>Occupation</th>" +
                     "<th>Modify</th>" +
                 "</tr>";
-                    
-                $(headRow).appendTo("#addressBook");
+                
+                $("#addressBook").html(headRow);
                 
                 $.each($.parseJSON(dataIn), function() {
                    var thisRow = "<tr id=\"row" + this.id + "\" class=\"" + rowCount + "\">" +
