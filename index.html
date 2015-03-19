@@ -94,6 +94,45 @@
                 
                 readBook();
             });
+            
+            function addEntry() {
+                var firstName = $("#fName").val();
+                var lastName = $("#lName").val();
+                var email = $("#email").val();
+                var phone = $("#phone").val();
+                var github = $("#github").val();
+                var city = $("#city").val();
+                var region = $("#region").val();
+                var country = $("#country").val();
+                var occupation = $("#occupation").val();
+                
+                var dbCreateScript;
+                if (currentMode == "azure") {
+                    dbReadScript = "create-azure.php";
+                } else {
+                    dbReadScript = "create-mysql.php";
+                }
+                
+                $("#addressBook").html("");
+                    $.ajax({
+                        type: 'POST',
+                        url: dbCreateScript,
+                        data: ({firstName: firstName,
+                               lastName: lastName,
+                               email: email,
+                               phone: phone,
+                               github: github,
+                               city: city,
+                               region: region,
+                               country: country,
+                               occupation: occupation}),
+                        dataType: "json",
+                        success: updateBook,
+                        error: function() {
+                            alert("Error creating entry!");
+                        }
+                    });
+            }
         </script>
     </head>
     
@@ -104,6 +143,23 @@
             <input type="radio" name="database-mode" value="mysql" checked> MySQL
             <input type="radio" name="database-mode" value="azure"> Azure
         </div>
+        <br />
+        <table>
+            <tr>
+                <td><input class="createForm" type="text" id="fName" placeholder="First Name"></td>
+                <td><input class="createForm" type="text" id="lName" placeholder="Last Name"></td>
+                <td><input class="createForm" type="email" id="email" placeholder="Email"></td>
+                <td><input class="createForm" type="tel" id="phone" placeholder="Telephone Number"></td>
+                <td><input class="createForm" type="text" id="github" placeholder="GitHub Username"></td>
+            </tr>
+            <tr>
+                <td><input class="createForm" type="text" id="city" placeholder="City"></td>
+                <td><input class="createForm" type="text" id="region" placeholder="Region"></td>
+                <td><input class="createForm" type="text" id="country" placeholder="Country"></td>
+                <td><input class="createForm" type="text" id="occupation" placeholder="Occupation"></td>
+                <td><button type="button" onclick="addEntry()">Add Entry</button></td>
+            </tr>
+        </table>
         <br />
         <table id="addressBook">
             

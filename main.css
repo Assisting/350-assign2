@@ -8,6 +8,10 @@ body {
     color: red;
 }
 
+input.createForm {
+    width: 95%;
+}
+
 table {
     width: 90%;
     margin-left: auto;
