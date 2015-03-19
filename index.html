@@ -176,12 +176,28 @@
             }
             
             function updateEntry(id) {
-                addEntry();
-                
-                deleteEntry(id);
-                
                 $("#addButton").html("Add Entry");
                 $("#addButton").attr("onlick", "addEntry()");
+                
+                var dbDeleteScript;
+                if (currentMode == "azure") {
+                    dbDeleteScript = "delete-azure.php";
+                } else {
+                    dbDeleteScript = "delete-mysql.php";
+                }
+                
+                var dataString = 'id=' + id;
+                
+                $.ajax({
+                    type: 'POST',
+                    url: dbDeleteScript,
+                    data: dataString,
+                    error: function() {
+                        alert("Error updating entry!");
+                    }
+                });
+                
+                addEntry();
             }
         </script>
     </head>
