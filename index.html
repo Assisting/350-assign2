@@ -176,9 +176,6 @@
             }
             
             function updateEntry(id) {
-                $("#addButton").html("Add Entry");
-                $("#addButton").attr("onlick", "addEntry()");
-                
                 var dbDeleteScript;
                 if (currentMode == "azure") {
                     dbDeleteScript = "delete-azure.php";
@@ -187,6 +184,9 @@
                 }
                 
                 var dataString = 'id=' + id;
+                
+                $("#addButton").html("Add Entry");
+                $("#addButton").attr("onlick", "addEntry()");
                 
                 $.ajax({
                     type: 'POST',
