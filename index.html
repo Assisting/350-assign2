@@ -12,6 +12,13 @@
                 currentMode = mode;
                 
                 console.log("Selected mode is " + currentMode);
+                
+                if(currentMode == "azure") {
+                    $("#newEntryForm").attr("action" : "create-azure.php");
+                } else {
+                    $("#newEntryForm").attr("action" : "create-mysql.php");
+                }
+                
                 updateBook();
             }
         </script>
@@ -94,19 +101,6 @@
                 
                 readBook();
             });
-            
-            function addEntry() {
-                alert($("#newEntryForm").serialize());
-                
-                var dbCreateScript;
-                if (currentMode == "azure") {
-                    dbCreateScript = "create-azure.php";
-                } else {
-                    dbCreateScript = "create-mysql.php";
-                }
-                
-                $.post(dbCreateScript, $("#newEntryForm").serialize(), updateBook);
-            }
         </script>
     </head>
     
@@ -119,7 +113,7 @@
         </div>
         <br />
         <table>
-            <form id="newEntryForm">
+            <form id="newEntryForm" method="post" action="create-mysql.php">
                 <tr>
                     <td><input class="createForm" type="text" id="firstName" placeholder="First Name"></td>
                     <td><input class="createForm" type="text" id="lastName" placeholder="Last Name"></td>
@@ -132,7 +126,7 @@
                     <td><input class="createForm" type="text" id="region" placeholder="Region"></td>
                     <td><input class="createForm" type="text" id="country" placeholder="Country"></td>
                     <td><input class="createForm" type="text" id="occupation" placeholder="Occupation"></td>
-                    <td><button type="button" onclick="addEntry()">Add Entry</button></td>
+                    <td><input type="submit">Add Entry</button></td>
                 </tr>
             </form>
         </table>
