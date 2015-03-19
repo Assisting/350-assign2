@@ -39,5 +39,5 @@
     $insertStatement .= $occupation;
     $insertStatement .= "\")";
     
-    $db->query($insertStatement);
+    $db->exec($insertStatement);
 ?>
