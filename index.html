@@ -61,16 +61,17 @@
                 
                 $.each($.parseJSON(dataIn), function() {
                    var thisRow = "<tr id=\"row" + this.id + "\" class=\"" + rowCount + "\">" +
-                       "<td>" + this.firstName + "</td>" +
-                       "<td>" + this.lastName + "</td>" +
-                       "<td>" + this.email + "</td>" +
-                       "<td>" + this.phone + "</td>" +
-                       "<td>" + this.github + "</td>" +
-                       "<td>" + this.city + "</td>" +
-                       "<td>" + this.region + "</td>" +
-                       "<td>" + this.country + "</td>" +
-                       "<td>" + this.occupation + "</td>" +
-                       '<td><a id=\"clickable\" onclick=\"deleteEntry(' + this.id + ')">Delete</a></td>' +
+                       "<td id=\"firstName" + this.id + "\">" + this.firstName + "</td>" +
+                       "<td id=\"lastName" + this.id + "\">" + this.lastName + "</td>" +
+                       "<td id=\"email" + this.id + "\">" + this.email + "</td>" +
+                       "<td id=\"phone" + this.id + "\">" + this.phone + "</td>" +
+                       "<td id=\"github" + this.id + "\">" + this.github + "</td>" +
+                       "<td id=\"city" + this.id + "\">" + this.city + "</td>" +
+                       "<td id=\"region" + this.id + "\">" + this.region + "</td>" +
+                       "<td id=\"country" + this.id + "\">" + this.country + "</td>" +
+                       "<td id=\"occupation" + this.id + "\">" + this.occupation + "</td>" +
+                       '<td><a id=\"clickable\" onclick=\"deleteEntry(' + this.id + ')">Delete</a>' + 
+                       ' | <a id=\"clickable\" onclick=\"updateEntry(' + this.id + ')">Update</a></td>' +
                        "</tr>";
                    
                    if(rowCount == "odd") {
@@ -154,6 +155,34 @@
                     }
                 });
             }
+            
+            function updateClick(id) {
+                $("#addButton").html("Update Entry");
+                $("#addButton").attr("onlick", "updateEntry(" + id + ")");
+                
+                $("#row" + id).attr("class", "update");
+                
+                $("#row" + id).children("td").each(function() {
+                    $("#firstName").val($("#firstName" + id));
+                    $("#lastName").val($("#lastName" + id));
+                    $("#email").val($("#email" + id));
+                    $("#phone").val($("#phone" + id));
+                    $("#github").val($("#github" + id));
+                    $("#city").val($("#city" + id));
+                    $("#region").val($("#region" + id));
+                    $("#country").val($("#country" + id));
+                    $("#occupation").val($("#occupation" + id));
+                });
+            }
+            
+            function updateEntry(id) {
+                addEntry();
+                
+                deleteEntry(id);
+                
+                $("#addButton").html("Add Entry");
+                $("#addButton").attr("onlick", "addEntry()");
+            }
         </script>
     </head>
     
@@ -178,7 +207,7 @@
                 <td><input class="createForm" type="text" id="region" placeholder="Region"></td>
                 <td><input class="createForm" type="text" id="country" placeholder="Country"></td>
                 <td><input class="createForm" type="text" id="occupation" placeholder="Occupation"></td>
-                <td><button type="button" onclick="addEntry()">Add Entry</button></td>
+                <td><button type="button" onclick="addEntry()" id="addButton">Add Entry</button></td>
             </tr>
         </table>
         <br />

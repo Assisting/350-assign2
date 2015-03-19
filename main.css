@@ -4,6 +4,10 @@ body {
     font-family: Source Sans Pro;
 }
 
+.update {
+    background: yellow;
+}
+
 #error {
     color: red;
 }
