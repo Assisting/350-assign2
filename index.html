@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <style type="text/css">
-            #error {
-                color: red;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="main.css" />
         
         <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
         
@@ -20,6 +16,68 @@
         </script>
         
         <script type="text/javascript">
+            function readBook() {
+                var dbReadScript;
+                if (currentMode == "azure") {
+                    dbReadScript = "read-azure.php";
+                } else {
+                    dbReadScript = "read-mysql.php";
+                }
+                
+                $("#addressBook").html("");
+                    $.ajax({
+                        type: 'POST',
+                        url: dbReadScript,
+                        success: makeTable,
+                        error: function() {
+                            alert("Error reading database!");
+                        }
+                    });
+            }
+            
+            function makeTable(dataIn) {
+                alert(dataIn);
+                var rowCount = "odd";
+                
+                var headRow = "<tr>" +
+                    "<th>First Name</th>" +
+                    "<th>Last Name</th>" +
+                    "<th>Email</th>" +
+                    "<th>Phone</th>" +
+                    "<th>GitHub</th>" +
+                    "<th>City</th>" +
+                    "<th>Region</th>" +
+                    "<th>Country</th>" +
+                    "<th>Occupation</th>" +
+                    "<th>Modify</th>" +
+                "</tr>";
+                    
+                $(headRow).appendTo("#addressBook");
+                
+                $.each($.parseJSON(dataIn), function() {
+                   var thisRow = "<tr id=\"row" + this.id + "\" class=\"" + rowCount + "\">" +
+                       "<td>" + this.firstName + "</td>" +
+                       "<td>" + this.lastName + "</td>" +
+                       "<td>" + this.email + "</td>" +
+                       "<td>" + this.phone + "</td>" +
+                       "<td>" + this.github + "</td>" +
+                       "<td>" + this.city + "</td>" +
+                       "<td>" + this.region + "</td>" +
+                       "<td>" + this.country + "</td>" +
+                       "<td>" + this.occupation + "</td>" +
+                       "<td> </td>" +
+                       "</tr>";
+                   
+                   if(rowCount == "odd") {
+                       rowCount = "even";
+                   } else {
+                       rowCount = "odd";
+                   }
+                    
+                    $(thisRow).appendTo("#addressBook");
+                });
+            }
+            
             $(document).ready(function() {
                 $("input[type=radio][name=database-mode]").on("change", function() {
                     if(this.value == "mysql") {
@@ -28,6 +86,8 @@
                         changeMode("azure");
                     }
                 });
+                
+                readBook();
             });
         </script>
     </head>
@@ -39,19 +99,10 @@
             <input type="radio" name="database-mode" value="mysql" checked> MySQL
             <input type="radio" name="database-mode" value="azure"> Azure
         </div>
-        
+        <br />
         <table id="addressBook">
-            <tr>
-                <td>First Name</td>
-                <td>Last Name</td>
-                <td>Email</td>
-                <td>Phone</td>
-                <td>GitHub</td>
-                <td>City</td>
-                <td>Region</td>
-                <td>Country</td>
-                <td>Occupation</td>
-            </tr>
+            
+            
         </table>
     </body>
 </html>
