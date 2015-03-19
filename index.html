@@ -192,12 +192,11 @@
                     type: 'POST',
                     url: dbDeleteScript,
                     data: dataString,
+                    success: addEntry,
                     error: function() {
                         alert("Error updating entry!");
                     }
                 });
-                
-                addEntry();
             }
         </script>
     </head>
