@@ -96,24 +96,7 @@
             });
             
             function addEntry() {
-                var $inputs = $('#firstName, #lastName, #email, #phone, #github, #city, #region, #country, #occupation');
-                var data = {};
-                
-                $inputs.each(function() {
-                    data[this.id] = $(this).val()
-                })
-                
-                /*$("#firstName").val();
-                $("#lastName").val();
-                $("#email").val();
-                $("#phone").val();
-                $("#github").val();
-                $("#city").val();
-                $("#region").val();
-                $("#country").val();
-                $("#occupation").val();*/
-                
-                var dataString = JSON.stringify(data);
+                alert($("#newEntryForm").serialize());
                 
                 var dbCreateScript;
                 if (currentMode == "azure") {
@@ -122,9 +105,7 @@
                     dbCreateScript = "create-mysql.php";
                 }
                 
-                alert(dataString);
-                
-                $.post(dbCreateScript, dataString);
+                $.post(dbCreateScript, $("#newEntryForm").serialize(), updateBook);
             }
         </script>
     </head>
@@ -138,20 +119,22 @@
         </div>
         <br />
         <table>
-            <tr>
-                <td><input class="createForm" type="text" id="firstName" placeholder="First Name"></td>
-                <td><input class="createForm" type="text" id="lastName" placeholder="Last Name"></td>
-                <td><input class="createForm" type="email" id="email" placeholder="Email"></td>
-                <td><input class="createForm" type="tel" id="phone" placeholder="Telephone Number"></td>
-                <td><input class="createForm" type="text" id="github" placeholder="GitHub Username"></td>
-            </tr>
-            <tr>
-                <td><input class="createForm" type="text" id="city" placeholder="City"></td>
-                <td><input class="createForm" type="text" id="region" placeholder="Region"></td>
-                <td><input class="createForm" type="text" id="country" placeholder="Country"></td>
-                <td><input class="createForm" type="text" id="occupation" placeholder="Occupation"></td>
-                <td><button type="button" onclick="addEntry()">Add Entry</button></td>
-            </tr>
+            <form id="newEntryForm">
+                <tr>
+                    <td><input class="createForm" type="text" id="firstName" placeholder="First Name"></td>
+                    <td><input class="createForm" type="text" id="lastName" placeholder="Last Name"></td>
+                    <td><input class="createForm" type="email" id="email" placeholder="Email"></td>
+                    <td><input class="createForm" type="tel" id="phone" placeholder="Telephone Number"></td>
+                    <td><input class="createForm" type="text" id="github" placeholder="GitHub Username"></td>
+                </tr>
+                <tr>
+                    <td><input class="createForm" type="text" id="city" placeholder="City"></td>
+                    <td><input class="createForm" type="text" id="region" placeholder="Region"></td>
+                    <td><input class="createForm" type="text" id="country" placeholder="Country"></td>
+                    <td><input class="createForm" type="text" id="occupation" placeholder="Occupation"></td>
+                    <td><button type="button" onclick="addEntry()">Add Entry</button></td>
+                </tr>
+            </form>
         </table>
         <br />
         <table id="addressBook">
