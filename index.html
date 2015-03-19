@@ -117,7 +117,7 @@
                     $.ajax({
                         type: 'POST',
                         url: dbCreateScript,
-                        data: ({firstName: firstName,
+                        data: {firstName: firstName,
                                lastName: lastName,
                                email: email,
                                phone: phone,
@@ -125,7 +125,7 @@
                                city: city,
                                region: region,
                                country: country,
-                               occupation: occupation}),
+                               occupation: occupation},
                         dataType: "json",
                         success: updateBook,
                         error: function() {
