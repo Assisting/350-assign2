@@ -163,15 +163,15 @@
                 $("#row" + id).attr("class", "update");
                 
                 $("#row" + id).children("td").each(function() {
-                    $("#firstName").val($("#firstName" + id));
-                    $("#lastName").val($("#lastName" + id));
-                    $("#email").val($("#email" + id));
-                    $("#phone").val($("#phone" + id));
-                    $("#github").val($("#github" + id));
-                    $("#city").val($("#city" + id));
-                    $("#region").val($("#region" + id));
-                    $("#country").val($("#country" + id));
-                    $("#occupation").val($("#occupation" + id));
+                    $("#firstName").val($("#firstName" + id).html());
+                    $("#lastName").val($("#lastName" + id).html());
+                    $("#email").val($("#email" + id).html());
+                    $("#phone").val($("#phone" + id).html());
+                    $("#github").val($("#github" + id).html());
+                    $("#city").val($("#city" + id).html());
+                    $("#region").val($("#region" + id).html());
+                    $("#country").val($("#country" + id).html());
+                    $("#occupation").val($("#occupation" + id).html());
                 });
             }
             
