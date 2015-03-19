@@ -97,10 +97,10 @@
             
             function addEntry() {
                 var $inputs = $("#fName, #lName, #email, #phone, #github, #city, #region, #country, #occupation");
-                var dataString = {};
+                var data = {};
                 
                 $inputs.each(function() {
-                    dataString[this.id] = $(this).val()
+                    data[this.id] = $(this).val()
                 })
                 
                 /*$("#fName").val();
@@ -113,12 +113,16 @@
                 $("#country").val();
                 $("#occupation").val();*/
                 
+                var dataString = JSON.stringify(data);
+                
                 var dbCreateScript;
                 if (currentMode == "azure") {
                     dbReadScript = "create-azure.php";
                 } else {
                     dbReadScript = "create-mysql.php";
                 }
+                
+                alert(dataString);
                 
                 $("#addressBook").html("");
                     $.ajax({
