@@ -19,25 +19,25 @@
     $occupation = clean($_POST["occupation"]);
 
     $insertStatement = "INSERT INTO AddressBook (FirstName, LastName, Email, Phone, GitHub, City, Region, Country, Occupation)
-                                    VALUES (";
+                                    VALUES (\"";
     $insertStatement .= $firstName;
-    $insertStatement .= ", ";
+    $insertStatement .= "\", \"";
     $insertStatement .= $lastName;
-    $insertStatement .= ", ";
+    $insertStatement .= "\", \"";
     $insertStatement .= $email;
-    $insertStatement .= ", ";
+    $insertStatement .= "\", \"";
     $insertStatement .= $phone;
-    $insertStatement .= ", ";
+    $insertStatement .= "\", \"";
     $insertStatement .= $github;
-    $insertStatement .= ", ";
+    $insertStatement .= "\", \"";
     $insertStatement .= $city;
-    $insertStatement .= ", ";
+    $insertStatement .= "\", \"";
     $insertStatement .= $region;
-    $insertStatement .= ", ";
+    $insertStatement .= "\", \"";
     $insertStatement .= $country;
-    $insertStatement .= ", ";
+    $insertStatement .= "\", \"";
     $insertStatement .= $occupation;
-    $insertStatement .= ")";
+    $insertStatement .= "\")";
     
     $db->query($insertStatement);
 ?>
