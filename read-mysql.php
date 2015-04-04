@@ -1,5 +1,5 @@
 <?php
-    $db = new PDO('mysql:host=lovett.usask.ca;dbname=cmpt350_ejl389;charset=utf8','cmpt350_ejl389','k9xctrbvyt');
+    $db = new PDO('mysql:University Hostname;dbname=University Database;charset=utf8','University Username','University Password');
     $results = array();
 
     foreach($db->query('SELECT * FROM AddressBook ORDER BY FirstName') as $row) {
